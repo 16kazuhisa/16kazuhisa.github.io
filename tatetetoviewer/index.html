@@ -9,6 +9,9 @@
     h1 {
         text-align: center;
     }
+    body>p {
+        text-align: center;
+    }
 
     body {
         background-color: #eeeeee;
@@ -103,14 +106,88 @@
         margin: 30px 30px 5px 30px;
         font-size: 20px;
     }
+    div.infomation>div>p:last-child{
+        margin: 30px;
+    }
     div.infomation>div>ul{
         margin: 0px 30px;
         font-size: 17px;
+    }
+
+    div.memo {
+        background-color: #cccccc;
+        border-style: dashed;
+        border-color: #333333;
+        border-radius: 40px;
+        border-width: 2px;
+        padding: 10px;
+        margin: 50px auto auto auto;
+        width: min-content;
+    }
+    div.memo>div {
+        background-color: #ffffff;
+        border-style: dashed;
+        border-color: #333333;
+        border-radius: 20px;
+        border-width: 2px;
+        margin: 10px;
+        padding: 10px;
+        width: 1360px;
+    }
+    div.memo>div:first-child {
+        text-align: center;
+        vertical-align: middle;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    div.memo>div>h2{
+        margin: 15px;
+        font-size: 40px;
+    }
+    div.memo>div>p{
+        margin: 30px 30px 5px 30px;
+        font-size: 15px;
+    }
+    div.memo>div>p:last-child{
+        margin: 30px;
+    }
+    div.memo>div>ul{
+        margin: 0px 30px;
+        font-size: 15px;
+    }
+
+    div.bottom {
+        background-color: #cccccc;
+        border-style: dashed;
+        border-color: #333333;
+        border-radius: 40px;
+        border-width: 2px;
+        padding: 10px;
+        margin: 50px auto auto auto;
+        width: min-content;
+    }
+    div.bottom>div {
+        background-color: #ffffff;
+        border-style: dashed;
+        border-color: #333333;
+        border-radius: 20px;
+        border-width: 2px;
+        margin: 10px;
+        padding: 10px;
+        width: 1360px;
+        text-align: center;
+        vertical-align: middle;
+        align-items: center;
+    }
+    div.bottom>div>p{
+        margin: 30px;
+        font-size: 15px;
     }
 </style>
 
 <body>
     <h1>TatetetoViewer</h1>
+    <p>※このページの閲覧は、PCもしくはタブレットを推奨いたします。</p>
     <div class="main">
         <div><label>Type alphabet to comvert</label><br />
             <textarea id="before" name="before" spellcheck="false"></textarea>
@@ -164,6 +241,65 @@
             <p>とりあえず、そんなかんじです。あんまり洗練してないですが、私は楽しいですよ。<br/>レッツ！人工言語！</p>
         </div>
     </div>
+    <div class="memo">
+        <div><h2>メモ</h2></div>
+        <div>
+            <p>こちらに記載のものは、原則として、TATETETOのルールとしては、未設定のものです。</p>
+            <p>2025/6/9 : 文頭に「宣言」「定義」を使うというルールと、それに伴う「関数」「ネスト文」「ループ文」を思いついた。<br/>これらのルールを適用するなら、どのような文型が良いか、考えてみる。<br/>文字の一覧と単語の一覧を作った方がよさそう。</p>
+            <p>宣言 とは</p>
+        <ul>
+            <li>文の形体を指定する。</li>
+            <li>感嘆詞、名詞、形容詞+名詞などの場合は、省略する。その場合でも宣言は出来るが、宣言しない方が自然(という設定)</li>
+            <li>宣言の分類によって、使用する宣言の単語数が、ある程度決まる。</li>
+            </ul>
+            <p>定義 とは</p>
+        <ul>
+            <li>文中の単語や関数などの性質について、指定する。</li>
+            <li>宣言を使用する場合は、宣言の次に使用する。宣言がない場合は、文頭に使用する。</li>
+            <li>任意の数の定義を使用できる。</li>
+            </ul>
+            <p>関数 とは</p>
+        <ul>
+            <li>文中に使用する事柄について、指定する。</li>
+            <li>複数の関数を使用する場合は、関数名を定義しておいた方が親切である(しかし、冗長的になりやすくなる)</li>
+            <li>必要に応じて、定義の直後、文中、文尾に使用できる。</li>
+            <li>関数中にも「宣言」「定義」「関数」「ネスト文」「ループ文」を使用できる。</li>
+            <li>任意の数の関数を使用できる。</li>
+            </ul>
+            <p>ネスト文 とは</p>
+        <ul>
+            <li>文中に文を表現する場合に、使用できる。</li>
+            <li>ネスト文中にも「宣言」「定義」「関数」「ネスト文」「ループ文」を使用できる。</li>
+            <li>任意の数のネスト文を使用できる。</li>
+            </ul>
+            <p>ループ文 とは</p>
+        <ul>
+            <li>文中に文を表現する場合に、使用できる。</li>
+            <li>基本的にはネスト文と同質であるが、ループ文は複数回の出来事や数量のある物事に対しての、使用を想定している。</li>
+            <li>ループ文中にも「宣言」「定義」「関数」「ネスト文」「ループ文」を使用できる。</li>
+            <li>任意の数のループ文を使用できる。</li>
+            </ul>
+            <p>これらのルールを適用することとなった、歴史的な経緯の設定について</p>
+        <ul>
+            <li>政界に携わる機械技師により、考案されたのが最初。</li>
+            <li>元々は、厳密な会話や文章が好まれていた政界や業界(どのような？)にて、使用されていた。</li>
+            <li>他の業界や教育機関などでも、契約や厳密な説明などにて、齟齬や語弊を排除する目的で、使用されるようになった。</li>
+            <li>そのうちに、他の利用目的や、私的な会話にも広まった。</li>
+            </ul>
+            <p>動詞の原型について</p>
+        <ul>
+            <li>例えば、英語において動詞の原型で始まる文を使用した場合は、命令文(Speak ... : ～を話せ)などになる。</li>
+            <li>日本語では、一人称の非過去(話す : I'll speak.)や、修飾語(話す～ : Speaking ...)などになる。</li>
+            <li>TATETETOでは、どうする？</li>
+            </ul>
+            <p>便宜上、他の文字、例えばアルファベットやカナでの表記を併用する方針をとる。</p>
+        </div>
+    </div>
+    <div class="bottom">
+        <div>
+            <p>TATETETO is made by <a href="https://x.com/16kazuhisa" target="_blank">16kazuhisa</a> since 2025.</p>
+        </div>
+    </div>
 </body>
 <script>
 
@@ -201,6 +337,7 @@
         "ee": "4,5 10,5:4,12 10,12 10,28",
         "ii": "4,6 10,16 4,26",
         "oo": "4,4 4,24 10,8 10,28",
+        "ou": "4,4 4,24 10,8 10,28",
         "uu": "10,6 4,16 10,26",
         "ae": "10,4 10,16 4,10:10,28 4,22",
         "ea": "4,4 10,10:4,16 10,22 4,28",
@@ -219,6 +356,7 @@
         "een": "4,5 10,5:4,12 10,12 10,22:10,28 4,28",
         "iin": "4,4 10,12 4,20:10,28 4,28",
         "oon": "4,4 4,18 10,8 10,22:10,28 4,28",
+        "oun": "4,4 4,18 10,8 10,22:10,28 4,28",
         "uun": "10,4 4,12 10,20:10,28 4,28",
         "aen": "10,4 10,12 4,6:10,22 4,18:10,28 4,28",
         "ean": "4,4 10,6:4,10 10,16 4,22:10,28 4,28",
