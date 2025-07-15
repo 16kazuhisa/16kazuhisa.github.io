@@ -6,6 +6,8 @@
     <title>iigame face</title>
     <style>
         body{
+          background-image: url("face_back.png");
+          background-repeat: no-repeat;
 padding: 0;
 margin: 0;
         }
@@ -34,7 +36,7 @@ position: absolute;
     <script>
 
 
-
+// ----- x18 y43 -----
 
         var idflb = document.getElementById("flb");
         var idfle = document.getElementById("fle");
@@ -53,14 +55,14 @@ var peakdown=1000.0;
 
         
 function posandsize(){
-  idflb.style.left= "47px";
-  idflb.style.top= "84.5px";
-  idfle.style.left= "77px";
-  idfle.style.top= "144.5px";
-  idfrb.style.left= "177px";
-  idfrb.style.top= "84.5px";
-  idfre.style.left= "197px";
-  idfre.style.top= "144.5px";
+  idflb.style.left= "29px";-18
+  idflb.style.top= "41.5px";-43
+  idfle.style.left= "59px";
+  idfle.style.top= "101.5px";
+  idfrb.style.left= "159px";
+  idfrb.style.top= "41.5px";
+  idfre.style.left= "179px";
+  idfre.style.top= "101.5px";
 
   idflb.style.width= "96px";
   idflb.style.height= "46px";
@@ -74,8 +76,8 @@ function posandsize(){
 }
 
 posandsize();
-  idmou.style.left= "107px";
-  idmou.style.top= "284.5px";
+  idmou.style.left= "89px";
+  idmou.style.top= "241.5px";
   idmou.style.width= "106px";
   idmou.style.height= "46px";
 
@@ -88,9 +90,9 @@ posandsize();
 
 function render(micval) {
     var retio=0.3+micval;
-  idmou.style.left= "107px";
-  idmou.style.top= (307.5-23*retio) + "px";
-  idmou.style.width= "106px";
+  idmou.style.left= (102+10*retio-18) + "px";
+  idmou.style.top= (305-14*retio-43) + "px";
+  idmou.style.width= (116-20*retio) + "px";
   idmou.style.height= 46*retio + "px";
 
 posandsize();
