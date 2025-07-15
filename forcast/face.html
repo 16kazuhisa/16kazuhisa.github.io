@@ -139,8 +139,9 @@ audioContext.audioWorklet.addModule('awl.js').then(() => {
 
         nowvol=0.0;
 for(var nowvolu in nowvols){
-if(nowvolu<0.0) nowvolu=-nowvolu;
-if(nowvol<nowvolu) nowvol=nowvolu;
+ nowvoluf= parseFloat(nowvolu);
+if(nowvoluf<0.0) nowvoluf=-nowvoluf;
+if(nowvol<nowvoluf) nowvol=nowvoluf;
 }
 
   };
