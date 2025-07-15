@@ -45,6 +45,9 @@ position: absolute;
 var nowtime=Date.now();
 var deltime=0;
 var nowvol=0.0;
+var nowpeak=0.0;
+var peakup=100.0;
+var peakdown=1000.0;
 
         
 function posandsize(){
@@ -83,9 +86,8 @@ posandsize();
 //const AudioContext = window.AudioContext || window.webkitAudioContext;
 //const meter = document.getElementById('volume');
 
-function render(percent) {
-    if(percent>100)percent=100;
-    var retio=0.4+percent/100;
+function render(micval) {
+    var retio=0.4+micval;
   //console.log('Percent:', percent);
   idmou.style.left= "107px";
   idmou.style.top= "284.5px";
@@ -100,15 +102,14 @@ function repProcess() {
   deltime=Date.now()-nowtime;
   nowtime=Date.now();
 
+  
+if(nowpeak<nowvol) nowpeak+=deltime/peakup;
+else nowpeak-=deltime/peakdown;
+
 
         var uag = document.getElementById("uag");
-        uag.innerText=nowvol;
-  //const data = event.inputBuffer.getChannelData(0);
-  //const peak = data.reduce((max, sample) => {
-  //  const cur = Math.abs(sample);
-  //  return max > cur ? max : cur;
-  //});
-  //render(100 / 32 * 10 * Math.log10(peak) + 100);
+        uag.innerText=nowpeak;
+  render(nowpeak);
 }
 
 
