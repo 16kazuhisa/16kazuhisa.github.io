@@ -44,7 +44,7 @@ position: absolute;
 
 var nowtime=Date.now();
 var deltime=0;
-var nowvol=0;
+var nowvol=0.0;
 
         
 function posandsize(){
@@ -101,6 +101,8 @@ function repProcess() {
   nowtime=Date.now();
 
 
+        var uag = document.getElementById("uag");
+        uag.innerText=nowvol;
   //const data = event.inputBuffer.getChannelData(0);
   //const peak = data.reduce((max, sample) => {
   //  const cur = Math.abs(sample);
@@ -133,9 +135,14 @@ audioContext.audioWorklet.addModule('awl.js').then(() => {
     source.connect(processNode);
   processNode.port.onmessage = (event) => {
     // Handling data from the processor.
-    nowvol=event.data;
-        var uag = document.getElementById("uag");
-        uag.innerText=nowvol;
+    nowvols=event.data;
+
+        nowvol=0.0;
+for(var nowvolu in nowvols){
+if(nowvolu<0.0) nowvolu=-nowvolu;
+if(nowvol<nowvolu) nowvol=nowvolu;
+}
+
   };
 });
 setInterval(repProcess,10);
