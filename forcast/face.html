@@ -45,8 +45,9 @@ position: absolute;
 var nowtime=Date.now();
 var deltime=0;
 var nowvol=0.0;
+var volgein=3.0;
 var nowpeak=0.0;
-var peakmin=0.03;
+var peakmin=0.08;
 var peakup=100.0;
 var peakdown=1000.0;
 
@@ -86,7 +87,7 @@ posandsize();
 
 
 function render(micval) {
-    var retio=0.4+micval;
+    var retio=0.3+micval;
   idmou.style.left= "107px";
   idmou.style.top= (307.5-23*retio) + "px";
   idmou.style.width= "106px";
@@ -146,7 +147,7 @@ for(var i in nowvols){
 if(nowvoluf<0.0) nowvoluf=-nowvoluf;
 if(nowvol<nowvoluf) nowvol=nowvoluf;
 }
-
+nowvol*=volgein;
   };
 });
 setInterval(repProcess,10);
