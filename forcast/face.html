@@ -49,7 +49,7 @@ var deltime=0;
 var nowvol=0.0;
 var volgein=6.0;
 var nowpeak=0.0;
-var peakmin=0.08;
+var peakmin=0.15;
 var peakup=100.0;
 var peakdown=1000.0;
 
@@ -89,7 +89,7 @@ posandsize();
 
 
 function render(micval) {
-    var retio=0.3+micval;
+    var retio=0.2+micval;
   idmou.style.left= (102+10*retio-18) + "px";
   idmou.style.top= (305-14*retio-43) + "px";
   idmou.style.width= (116-20*retio) + "px";
