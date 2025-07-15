@@ -87,9 +87,9 @@ posandsize();
 function render(micval) {
     var retio=0.4+micval;
   idmou.style.left= "107px";
-  idmou.style.top= "284.5px";
+  idmou.style.top= (307.5-23*retio) + "px";
   idmou.style.width= "106px";
-  idmou.style.height= 46*retio + "46px";
+  idmou.style.height= 46*retio + "px";
 
 posandsize();
 
@@ -100,8 +100,16 @@ function repProcess() {
   nowtime=Date.now();
 
   
-if(nowpeak<nowvol) nowpeak+=deltime/peakup;
-else nowpeak-=deltime/peakdown;
+if(nowpeak<nowvol) {
+  nowpeak+=deltime/peakup;
+  if(nowpeak>nowvol) nowpeak=nowvol;
+  if(nowpeak>1.0) nowpeak=1.0;
+}
+else 
+{
+  nowpeak-=deltime/peakdown;
+  if(nowpeak<nowvol) nowpeak=nowvol;
+}
 
 
         var uag = document.getElementById("uag");
