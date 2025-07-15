@@ -14,16 +14,23 @@ margin: 0;
         div{
 padding: 0;
 margin: 0;
-width: 320px;
-height:580px;
+width: 0px;
+height:0px;
+overflow: visible;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
         }
+div::-webkit-scrollbar {
+  display: none;
+}
         img{
 position: absolute;
         }
     </style>
 </head>
 <body>
-    <div>
+    <div id="srollBox">
         <p id="uag"></p>
         <img id="flb" src="face_brow.svg" />
         <img id="fle" src="face_eye.svg" />
@@ -37,6 +44,11 @@ position: absolute;
 
 
 // ----- x18 y43 -----
+
+
+const scrollBox = document.getElementById("srollBox");
+const scrollBar = scrollBox.offsetWidth - scrollBox.clientWidth;
+srollBox.style.width = `calc(100% + ${scrollBar}px)`;
 
         var idflb = document.getElementById("flb");
         var idfle = document.getElementById("fle");
