@@ -83,12 +83,9 @@ posandsize();
 
 
 
-//const AudioContext = window.AudioContext || window.webkitAudioContext;
-//const meter = document.getElementById('volume');
 
 function render(micval) {
     var retio=0.4+micval;
-  //console.log('Percent:', percent);
   idmou.style.left= "107px";
   idmou.style.top= "284.5px";
   idmou.style.width= "106px";
@@ -121,23 +118,18 @@ else nowpeak-=deltime/peakdown;
 
 async function start() {
 
-
 const constraints = {audio: true};
 const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
 const options = { sampleRate: 44100 };
 const audioContext = new AudioContext(options);
 const source = audioContext.createMediaStreamSource(mediaStream);
 
-//const worklet = audioContext.audioWorklet;
-
 audioContext.audioWorklet.addModule('awl.js').then(() => {
     const processNode = new AudioWorkletNode(audioContext, 'processor');
 
     source.connect(processNode);
   processNode.port.onmessage = (event) => {
-    // Handling data from the processor.
     nowvols=event.data;
-
         nowvol=0.0;
 for(var i in nowvols){
  nowvoluf= parseFloat(nowvols[i]);
@@ -148,15 +140,9 @@ if(nowvol<nowvoluf) nowvol=nowvoluf;
   };
 });
 setInterval(repProcess,10);
-
-
 }
 
-
-
 start();
-
-
 
     </script>
 </html>
