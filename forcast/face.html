@@ -22,6 +22,7 @@ position: absolute;
 </head>
 <body>
     <div>
+        <p id="uag"></p>
         <img id="flb" src="face_brow.svg" />
         <img id="fle" src="face_eye.svg" />
         <img id="frb" src="face_brow.svg" />
@@ -31,6 +32,10 @@ position: absolute;
     
 </body>
     <script>
+
+
+
+
         var idflb = document.getElementById("flb");
         var idfle = document.getElementById("fle");
         var idfrb = document.getElementById("frb");
@@ -100,8 +105,12 @@ async function start() {
   const media = await navigator.mediaDevices
     .getUserMedia({ audio: true })
     .catch(console.error);
-  const ctx = new AudioContext();
+const options = { sampleRate: 44100 };
+  const ctx = new AudioContext(options);
   //console.log('Sampling Rate:', ctx.sampleRate);
+var userAgent = window.navigator.userAgent;
+        var uag = document.getElementById("uag");
+        uag.innerText=userAgent;
 
   const processor = ctx.createScriptProcessor(1024, 1, 1);
   processor.onaudioprocess = onProcess;
