@@ -42,6 +42,9 @@ position: absolute;
         var idfre = document.getElementById("fre");
         var idmou = document.getElementById("mou");
 
+var nowtime=Date.now();
+var deltime=0;
+var nowvol=0;
 
         
 function posandsize(){
@@ -93,13 +96,19 @@ posandsize();
 
 }
 
-function onProcess(event) {
-  const data = event.inputBuffer.getChannelData(0);
-  const peak = data.reduce((max, sample) => {
-    const cur = Math.abs(sample);
-    return max > cur ? max : cur;
-  });
-  render(100 / 32 * 10 * Math.log10(peak) + 100);
+function repProcess() {
+  deltime=Date.now()-nowtime;
+  nowtime=Date.now();
+
+        var uag = document.getElementById("uag");
+        uag.innerText=nowvol;
+
+  //const data = event.inputBuffer.getChannelData(0);
+  //const peak = data.reduce((max, sample) => {
+  //  const cur = Math.abs(sample);
+  //  return max > cur ? max : cur;
+  //});
+  //render(100 / 32 * 10 * Math.log10(peak) + 100);
 }
 
 
@@ -123,14 +132,15 @@ const source = audioContext.createMediaStreamSource(mediaStream);
 audioContext.audioWorklet.addModule('awl.js').then(() => {
     const processNode = new AudioWorkletNode(audioContext, 'processor');
 
-    // 生成したAudioWorkletNodeにMediaStreamを接続する
-    //source.connect(processNode);
+    source.connect(processNode);
+  processNode.port.onmessage = (event) => {
+    // Handling data from the processor.
+    nowvol=event.data;
+  };
 });
+setInterval(repProcess,10);
 
 
-//var userAgent = window.navigator.userAgent;
-        //var uag = document.getElementById("uag");
-        //uag.innerText=userAgent;
 }
 
 
