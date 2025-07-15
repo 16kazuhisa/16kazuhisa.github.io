@@ -46,6 +46,7 @@ var nowtime=Date.now();
 var deltime=0;
 var nowvol=0.0;
 var nowpeak=0.0;
+var peakmin=0.05;
 var peakup=100.0;
 var peakdown=1000.0;
 
@@ -109,6 +110,7 @@ else
 {
   nowpeak-=deltime/peakdown;
   if(nowpeak<nowvol) nowpeak=nowvol;
+  if(nowpeak<peakmin) nowpeak=peakmin;
 }
 
 
