@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iigame face</title>
+    <style>
+        body{
+padding: 0;
+margin: 0;
+        }
+        div{
+padding: 0;
+margin: 0;
+width: 320px;
+height:580px;
+        }
+        img{
+position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img id="flb" src="face_brow.svg" />
+        <img id="fle" src="face_eye.svg" />
+        <img id="frb" src="face_brow.svg" />
+        <img id="fre" src="face_eye.svg" />
+        <img id="mou" src="face_mouth.svg" />
+    </div>
+    
+</body>
+    <script>
+        var idflb = document.getElementById("flb");
+        var idfle = document.getElementById("fle");
+        var idfrb = document.getElementById("frb");
+        var idfre = document.getElementById("fre");
+        var idmou = document.getElementById("mou");
+
+
+        
+function posandsize(){
+  idflb.style.left= "47px";
+  idflb.style.top= "84.5px";
+  idfle.style.left= "77px";
+  idfle.style.top= "144.5px";
+  idfrb.style.left= "177px";
+  idfrb.style.top= "84.5px";
+  idfre.style.left= "197px";
+  idfre.style.top= "144.5px";
+
+  idflb.style.width= "96px";
+  idflb.style.height= "46px";
+  idfle.style.width= "46px";
+  idfle.style.height= "106px";
+  idfrb.style.width= "96px";
+  idfrb.style.height= "46px";
+  idfre.style.width= "46px";
+  idfre.style.height= "106px";
+  
+}
+
+posandsize();
+  idmou.style.left= "107px";
+  idmou.style.top= "284.5px";
+  idmou.style.width= "106px";
+  idmou.style.height= "46px";
+
+
+
+
+
+
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const meter = document.getElementById('volume');
+
+function render(percent) {
+    if(percent>100)percent=100;
+    var retio=0.4+percent/100;
+  //console.log('Percent:', percent);
+  idmou.style.left= "107px";
+  idmou.style.top= "284.5px";
+  idmou.style.width= "106px";
+  idmou.style.height= 46*retio + "46px";
+
+posandsize();
+
+}
+
+function onProcess(event) {
+  const data = event.inputBuffer.getChannelData(0);
+  const peak = data.reduce((max, sample) => {
+    const cur = Math.abs(sample);
+    return max > cur ? max : cur;
+  });
+  render(100 / 32 * 10 * Math.log10(peak) + 100);
+}
+
+async function start() {
+  const media = await navigator.mediaDevices
+    .getUserMedia({ audio: true })
+    .catch(console.error);
+  const ctx = new AudioContext();
+  //console.log('Sampling Rate:', ctx.sampleRate);
+
+  const processor = ctx.createScriptProcessor(1024, 1, 1);
+  processor.onaudioprocess = onProcess;
+  processor.connect(ctx.destination);
+
+  const source = ctx.createMediaStreamSource(media);
+  source.connect(processor);
+}
+
+
+
+start();
+
+
+
+    </script>
+</html>
