@@ -100,8 +100,6 @@ function repProcess() {
   deltime=Date.now()-nowtime;
   nowtime=Date.now();
 
-        var uag = document.getElementById("uag");
-        uag.innerText=nowvol;
 
   //const data = event.inputBuffer.getChannelData(0);
   //const peak = data.reduce((max, sample) => {
@@ -136,6 +134,8 @@ audioContext.audioWorklet.addModule('awl.js').then(() => {
   processNode.port.onmessage = (event) => {
     // Handling data from the processor.
     nowvol=event.data;
+        var uag = document.getElementById("uag");
+        uag.innerText=nowvol;
   };
 });
 setInterval(repProcess,10);
