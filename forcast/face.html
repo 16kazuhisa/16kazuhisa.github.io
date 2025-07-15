@@ -45,6 +45,22 @@ position: absolute;
 
 // ----- x18 y43 -----
 
+var volgein=4.0;
+var peakmin=0.20;
+var peakup=100.0;
+var peakdown=1000.0;
+var retioplus=0.1;
+
+var faceswingxmin=10.0;
+var faceswingymin=10.0;
+var faceswingxmax=10.0;
+var faceswingymax=10.0;
+var eyeclosemin=100.0;
+var eyeclosemax=100.0;
+var eyeopenmin=3000.0;
+var eyeopenmax=6000.0;
+
+
 
 const scrollBox = document.getElementById("srollBox");
 const scrollBar = scrollBox.offsetWidth - scrollBox.clientWidth;
@@ -59,55 +75,39 @@ srollBox.style.width = `calc(100% + ${scrollBar}px)`;
 var nowtime=Date.now();
 var deltime=0;
 var nowvol=0.0;
-var volgein=6.0;
 var nowpeak=0.0;
-var peakmin=0.20;
-var peakup=100.0;
-var peakdown=1000.0;
-
-        
-function posandsize(){
-  idflb.style.left= "29px";
-  idflb.style.top= "41.5px";
-  idfle.style.left= "59px";
-  idfle.style.top= "101.5px";
-  idfrb.style.left= "159px";
-  idfrb.style.top= "41.5px";
-  idfre.style.left= "179px";
-  idfre.style.top= "101.5px";
-
-  idflb.style.width= "96px";
-  idflb.style.height= "46px";
-  idfle.style.width= "46px";
-  idfle.style.height= "106px";
-  idfrb.style.width= "96px";
-  idfrb.style.height= "46px";
-  idfre.style.width= "46px";
-  idfre.style.height= "106px";
-  
-}
-
-posandsize();
-  idmou.style.left= "89px";
-  idmou.style.top= "241.5px";
-  idmou.style.width= "106px";
-  idmou.style.height= "46px";
-
-
-
-
+var facex=0.0;
+var facey=0.0;
 
 
 
 
 function render(micval) {
-    var retio=0.2+micval;
-  idmou.style.left= (102+10*retio-18) + "px";
-  idmou.style.top= (305-14*retio-43) + "px";
-  idmou.style.width= (116-20*retio) + "px";
-  idmou.style.height= 46*retio + "px";
 
-posandsize();
+    var retio=retioplus+micval;
+
+  idflb.style.left= (facex+29+5*retio)+"px";
+  idflb.style.top= (facey+41.5-10*retio)+"px";
+  idfle.style.left= (facex+59)+"px";
+  idfle.style.top= (facey+101.5-5*retio)+"px";
+  idfrb.style.left= (facex+159-5*retio)+"px";
+  idfrb.style.top= (facey+41.5-10*retio)+"px";
+  idfre.style.left= (facex+179)+"px";
+  idfre.style.top= (facey+101.5-5*retio)+"px";
+
+  idflb.style.width= 96+"px";
+  idflb.style.height= 46+"px";
+  idfle.style.width= 46+"px";
+  idfle.style.height= 106+"px";
+  idfrb.style.width= 96+"px";
+  idfrb.style.height= 46+"px";
+  idfre.style.width= 46+"px";
+  idfre.style.height= 106+"px";
+
+  idmou.style.left= (102+10*retio-18) + "px";
+  idmou.style.top= (305-16*retio-43) + "px";
+  idmou.style.width= (116-20*retio) + "px";
+  idmou.style.height= 55*retio + "px";
 
 }
 
@@ -129,14 +129,10 @@ else
 }
 
 
-        var uag = document.getElementById("uag");
-        uag.innerText=nowpeak;
+        //var uag = document.getElementById("uag");
+        //uag.innerText=nowpeak;
   render(nowpeak);
 }
-
-
-
-
 
 
 
@@ -167,6 +163,7 @@ nowvol*=volgein;
 setInterval(repProcess,10);
 }
 
+render(peakmin);
 start();
 
     </script>
